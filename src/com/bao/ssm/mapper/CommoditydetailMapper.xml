@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bao.ssm.mapper.CommoditydetailMapper" >
+  <resultMap id="BaseResultMap" type="com.bao.ssm.po.Commoditydetail" >
+    <id column="commodityDetail_ID" property="commoditydetailId" jdbcType="INTEGER" />
+    <result column="commodityDetail_name" property="commoditydetailName" jdbcType="VARCHAR" />
+    <result column="commodityDetail_pice" property="commoditydetailPice" jdbcType="DOUBLE" />
+    <result column="commodityDetail_time" property="commoditydetailTime" jdbcType="TIMESTAMP" />
+    <result column="commodityDetail_homeName" property="commoditydetailHomename" jdbcType="VARCHAR" />
+    <result column="commodityDetail_bewrite" property="commoditydetailBewrite" jdbcType="VARCHAR" />
+    <result column="commodityDetail_type" property="commoditydetailType" jdbcType="VARCHAR" />
+    <result column="Transaction_status" property="transactionStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    commodityDetail_ID, commodityDetail_name, commodityDetail_pice, commodityDetail_time, 
+    commodityDetail_homeName, commodityDetail_bewrite, commodityDetail_type, Transaction_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bao.ssm.po.CommoditydetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from commoditydetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from commoditydetail
+    where commodityDetail_ID = #{commoditydetailId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from commoditydetail
+    where commodityDetail_ID = #{commoditydetailId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bao.ssm.po.CommoditydetailExample" >
+    delete from commoditydetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bao.ssm.po.Commoditydetail" >
+    insert into commoditydetail (commodityDetail_ID, commodityDetail_name, 
+      commodityDetail_pice, commodityDetail_time, 
+      commodityDetail_homeName, commodityDetail_bewrite, 
+      commodityDetail_type, Transaction_status)
+    values (#{commoditydetailId,jdbcType=INTEGER}, #{commoditydetailName,jdbcType=VARCHAR}, 
+      #{commoditydetailPice,jdbcType=DOUBLE}, #{commoditydetailTime,jdbcType=TIMESTAMP}, 
+      #{commoditydetailHomename,jdbcType=VARCHAR}, #{commoditydetailBewrite,jdbcType=VARCHAR}, 
+      #{commoditydetailType,jdbcType=VARCHAR}, #{transactionStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bao.ssm.po.Commoditydetail" >
+    insert into commoditydetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commoditydetailId != null" >
+        commodityDetail_ID,
+      </if>
+      <if test="commoditydetailName != null" >
+        commodityDetail_name,
+      </if>
+      <if test="commoditydetailPice != null" >
+        commodityDetail_pice,
+      </if>
+      <if test="commoditydetailTime != null" >
+        commodityDetail_time,
+      </if>
+      <if test="commoditydetailHomename != null" >
+        commodityDetail_homeName,
+      </if>
+      <if test="commoditydetailBewrite != null" >
+        commodityDetail_bewrite,
+      </if>
+      <if test="commoditydetailType != null" >
+        commodityDetail_type,
+      </if>
+      <if test="transactionStatus != null" >
+        Transaction_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commoditydetailId != null" >
+        #{commoditydetailId,jdbcType=INTEGER},
+      </if>
+      <if test="commoditydetailName != null" >
+        #{commoditydetailName,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailPice != null" >
+        #{commoditydetailPice,jdbcType=DOUBLE},
+      </if>
+      <if test="commoditydetailTime != null" >
+        #{commoditydetailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commoditydetailHomename != null" >
+        #{commoditydetailHomename,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailBewrite != null" >
+        #{commoditydetailBewrite,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailType != null" >
+        #{commoditydetailType,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionStatus != null" >
+        #{transactionStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bao.ssm.po.CommoditydetailExample" resultType="java.lang.Integer" >
+    select count(*) from commoditydetail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update commoditydetail
+    <set >
+      <if test="record.commoditydetailId != null" >
+        commodityDetail_ID = #{record.commoditydetailId,jdbcType=INTEGER},
+      </if>
+      <if test="record.commoditydetailName != null" >
+        commodityDetail_name = #{record.commoditydetailName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commoditydetailPice != null" >
+        commodityDetail_pice = #{record.commoditydetailPice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.commoditydetailTime != null" >
+        commodityDetail_time = #{record.commoditydetailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.commoditydetailHomename != null" >
+        commodityDetail_homeName = #{record.commoditydetailHomename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commoditydetailBewrite != null" >
+        commodityDetail_bewrite = #{record.commoditydetailBewrite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commoditydetailType != null" >
+        commodityDetail_type = #{record.commoditydetailType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transactionStatus != null" >
+        Transaction_status = #{record.transactionStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update commoditydetail
+    set commodityDetail_ID = #{record.commoditydetailId,jdbcType=INTEGER},
+      commodityDetail_name = #{record.commoditydetailName,jdbcType=VARCHAR},
+      commodityDetail_pice = #{record.commoditydetailPice,jdbcType=DOUBLE},
+      commodityDetail_time = #{record.commoditydetailTime,jdbcType=TIMESTAMP},
+      commodityDetail_homeName = #{record.commoditydetailHomename,jdbcType=VARCHAR},
+      commodityDetail_bewrite = #{record.commoditydetailBewrite,jdbcType=VARCHAR},
+      commodityDetail_type = #{record.commoditydetailType,jdbcType=VARCHAR},
+      Transaction_status = #{record.transactionStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bao.ssm.po.Commoditydetail" >
+    update commoditydetail
+    <set >
+      <if test="commoditydetailName != null" >
+        commodityDetail_name = #{commoditydetailName,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailPice != null" >
+        commodityDetail_pice = #{commoditydetailPice,jdbcType=DOUBLE},
+      </if>
+      <if test="commoditydetailTime != null" >
+        commodityDetail_time = #{commoditydetailTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commoditydetailHomename != null" >
+        commodityDetail_homeName = #{commoditydetailHomename,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailBewrite != null" >
+        commodityDetail_bewrite = #{commoditydetailBewrite,jdbcType=VARCHAR},
+      </if>
+      <if test="commoditydetailType != null" >
+        commodityDetail_type = #{commoditydetailType,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionStatus != null" >
+        Transaction_status = #{transactionStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where commodityDetail_ID = #{commoditydetailId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bao.ssm.po.Commoditydetail" >
+    update commoditydetail
+    set commodityDetail_name = #{commoditydetailName,jdbcType=VARCHAR},
+      commodityDetail_pice = #{commoditydetailPice,jdbcType=DOUBLE},
+      commodityDetail_time = #{commoditydetailTime,jdbcType=TIMESTAMP},
+      commodityDetail_homeName = #{commoditydetailHomename,jdbcType=VARCHAR},
+      commodityDetail_bewrite = #{commoditydetailBewrite,jdbcType=VARCHAR},
+      commodityDetail_type = #{commoditydetailType,jdbcType=VARCHAR},
+      Transaction_status = #{transactionStatus,jdbcType=INTEGER}
+    where commodityDetail_ID = #{commoditydetailId,jdbcType=INTEGER}
+  </update>
+</mapper>

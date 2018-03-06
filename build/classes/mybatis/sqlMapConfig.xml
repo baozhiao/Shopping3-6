@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 别名配置 -->
+<!-- 	<typeAliases>
+		<package name="com.bao.ssm.po"/>
+	</typeAliases> -->
+	
+	<!-- 因为使用了spring和mybatis的
+	必须遵循 mapper 和 mapper接口文件在同一目录下 
+	<mappers>
+		<mapper resource="" />
+	</mappers>
+	-->
+	
+	<settings>  
+    <!--其他配置...  -->  
+    	<setting name="mapUnderscoreToCamelCase" value="true"/>  
+    <!--其他配置...  -->  
+	</settings>  
+	
+</configuration>	
