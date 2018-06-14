@@ -24,7 +24,7 @@ public class CommodityController {
 		
 		List<CommodityExpand> list = commodityExpandService.findCommodityList();
 		
-		System.out.println("---------------------------");
+		System.out.println("---------5555555------------------");
 		
 		for (CommodityExpand commodityExpand : list) {
 			System.out.println(commodityExpand);
